@@ -1,22 +1,18 @@
 import * as React from 'react';
-import './App.css';
+import { Gameboard } from './Gameboard';
+import { NewGameButton } from './NewGameButton';
+import { StatusBar } from './StatusBar';
 
-import logo from './logo.svg';
-
-class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+class App extends React.Component<{}, {}> {
+    public render() {
+        return (
+            <>
+                <Gameboard />
+                <StatusBar />
+                <NewGameButton />
+            </>
+        );
+    }
 }
 
 export default App;
