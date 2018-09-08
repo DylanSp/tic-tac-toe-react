@@ -8,8 +8,8 @@ describe ("Tic Tac Toe game class", () => {
         game.makeMove(1); // X moves
         game.makeMove(7); // O moves
         const result = game.makeMove(2); // X moves, completing top row
-        expect(result === "Victory");
-        expect(game.winningPlayer === "PlayerX");
+        expect(result).toBe("Victory");
+        expect(game.winningPlayer).toBe("PlayerX");
     });
 
     it("Recognizes player O's victory correctly", () => {
@@ -20,15 +20,15 @@ describe ("Tic Tac Toe game class", () => {
         game.makeMove(7); // O moves
         game.makeMove(5); // X moves
         const result = game.makeMove(8); // O moves, completing bottom row
-        expect(result === "Victory");
-        expect(game.winningPlayer === "PlayerO");
+        expect(result).toBe("Victory");
+        expect(game.winningPlayer).toBe("PlayerO");
     });
 
     it ("Returns an error when attempting to fill an already-filled square", () => {
         const game = new TicTacToeGame();
         game.makeMove(0);
         const result = game.makeMove(0);
-        expect(result === "SquareFilled");
+        expect(result).toBe("SquareFilled");
     });
 
     it ("Returns an error when making a move in a completed game", () => {
@@ -39,21 +39,21 @@ describe ("Tic Tac Toe game class", () => {
         game.makeMove(7); // O moves
         game.makeMove(2); // X moves, completing top row
         const result = game.makeMove(3);
-        expect(result === "GameOver");
+        expect(result).toBe("GameOver");
     });
 
     it("Recognizes when it's X's turn", () => {
         const game = new TicTacToeGame();
         game.makeMove(0); // X moves
         const result = game.makeMove(1); // O moves
-        expect(result === "WaitingForMove");
-        expect(game.currentPlayer === "PlayerX");
+        expect(result).toBe("WaitingForMove");
+        expect(game.currentPlayer).toBe("PlayerX");
     });
 
     it("Recognizes when it's O's turn", () => {
         const game = new TicTacToeGame();
         const result = game.makeMove(0); // X moves
-        expect(result === "WaitingForMove");
-        expect(game.currentPlayer === "PlayerO");
+        expect(result).toBe("WaitingForMove");
+        expect(game.currentPlayer).toBe("PlayerO");
     });
 });

@@ -1,10 +1,10 @@
 type CellState = "X" | "O" | "EMPTY";
-type Player = "PlayerX" | "PlayerO";
-type MoveResult = "Victory" | "WaitingForMove" | "SquareFilled" | "GameOver";
+export type Player = "PlayerX" | "PlayerO";
+export type MoveResult = "Victory" | "WaitingForMove" | "SquareFilled" | "GameOver";
 type CellNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export class TicTacToeGame {
-    public currentPlayer?: Player;
+    public currentPlayer: Player;
     public winningPlayer?: Player;
     private board: CellState[];
     
@@ -57,16 +57,16 @@ export class TicTacToeGame {
             "diag2": [this.board[3], this.board[5], this.board[7]]
         }
 
-        // exit early or check everything, then error on inconsistent state?
         for (const line in lines) {
             if ((lines[line] as CellState[]).every(cell => cell === "X")) {
                 this.winningPlayer = "PlayerX";
+                return;
             } else if ((lines[line] as CellState[]).every(cell => cell === "O")) {
                 this.winningPlayer = "PlayerO";
-            } else {
-                this.winningPlayer = undefined;
+                return;
             }
         }
-
+        this.winningPlayer = undefined; // no winning player detected
+        return;
     }
 }
