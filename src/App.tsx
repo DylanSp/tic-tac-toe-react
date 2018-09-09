@@ -26,7 +26,7 @@ class App extends React.Component<AppProps, AppState> {
                     currentPlayer={this.state.game.currentPlayer}
                     winningPlayer={this.state.game.winningPlayer}
                 />
-                <NewGameButton />
+                <NewGameButton startNewGame={() => this.setState({game: new TicTacToeGame()})} />
             </div>
         );
     }

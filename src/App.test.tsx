@@ -3,6 +3,7 @@ import * as React from 'react';
 import App, { AppProps, AppState } from './App';
 import { StatusBar } from './StatusBar';
 import { CellNumber } from './TicTacToeGame';
+import { NewGameButton } from './NewGameButton';
 
 // convenience function for making moves
 function makeGameMove(app: ReactWrapper<AppProps, AppState>, cellNum: CellNumber): void {
@@ -60,5 +61,23 @@ describe("Status bar", () => {
         makeGameMove(app, 5); // X moves
         makeGameMove(app, 8); // O moves, completing bottom row
         expect(app.find(StatusBar).text()).toMatch(/Player O has won!/);
+    });
+});
+
+describe("New game button", () => {
+    let app: ReactWrapper<AppProps, AppState>;
+
+    beforeEach(() => {
+        app = mount(<App />);
+    });
+
+    afterEach(() => {
+        app = app.unmount();
+    });
+
+    it("Resets the game after one move", () => {
+        makeGameMove(app, 0);
+        app.find(NewGameButton).simulate("click");
+        expect(app.state().game.currentPlayer).toBe("PlayerX");
     });
 });
