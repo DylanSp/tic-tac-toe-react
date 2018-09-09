@@ -1,24 +1,32 @@
-type CellState = "X" | "O" | "EMPTY";
 export type Player = "PlayerX" | "PlayerO";
 export type MoveResult = "Victory" | "WaitingForMove" | "SquareFilled" | "GameOver";
 export type CellNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+type CellState = "X" | "O" | "EMPTY";
 
 export class TicTacToeGame {
-    public currentPlayer: Player;
-    public winningPlayer?: Player;
+    private _currentPlayer: Player;
+    private _winningPlayer?: Player;
     private board: CellState[];
     
     constructor () {
         this.board = new Array<CellState>(9);
         this.board.fill("EMPTY");
-        this.currentPlayer = "PlayerX";
-        this.winningPlayer = undefined;
+        this._currentPlayer = "PlayerX";
+        this._winningPlayer = undefined;
+    }
+
+    public get currentPlayer(): Player {
+        return this._currentPlayer;
+    }
+
+    public get winningPlayer(): Player | undefined {
+        return this._winningPlayer;
     }
 
     public makeMove(cellNum: CellNumber): [MoveResult, TicTacToeGame] {
         const updatedGame = new TicTacToeGame();
-        updatedGame.currentPlayer = this.currentPlayer;
-        updatedGame.winningPlayer = this.winningPlayer;
+        updatedGame._currentPlayer = this.currentPlayer;
+        updatedGame._winningPlayer = this.winningPlayer;
         updatedGame.board = this.board.map(element => element);
         
         if (updatedGame.board[cellNum] !== "EMPTY") {
@@ -41,9 +49,9 @@ export class TicTacToeGame {
         }
 
         if (updatedGame.currentPlayer === "PlayerX") {
-            updatedGame.currentPlayer = "PlayerO";
+            updatedGame._currentPlayer = "PlayerO";
         } else {
-            updatedGame.currentPlayer = "PlayerX";
+            updatedGame._currentPlayer = "PlayerX";
         }
         return ["WaitingForMove", updatedGame];
     }
@@ -64,14 +72,14 @@ export class TicTacToeGame {
 
         for (const line in lines) {
             if ((lines[line] as CellState[]).every(cell => cell === "X")) {
-                this.winningPlayer = "PlayerX";
+                this._winningPlayer = "PlayerX";
                 return;
             } else if ((lines[line] as CellState[]).every(cell => cell === "O")) {
-                this.winningPlayer = "PlayerO";
+                this._winningPlayer = "PlayerO";
                 return;
             }
         }
-        this.winningPlayer = undefined; // no winning player detected
+        this._winningPlayer = undefined; // no winning player detected
         return;
     }
 }
