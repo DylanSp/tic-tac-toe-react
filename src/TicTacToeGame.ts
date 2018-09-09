@@ -15,32 +15,37 @@ export class TicTacToeGame {
         this.winningPlayer = undefined;
     }
 
-    public makeMove(cellNum: CellNumber): MoveResult {
-        if (this.board[cellNum] !== "EMPTY") {
-            return "SquareFilled";
+    public makeMove(cellNum: CellNumber): [MoveResult, TicTacToeGame] {
+        const updatedGame = new TicTacToeGame();
+        updatedGame.currentPlayer = this.currentPlayer;
+        updatedGame.winningPlayer = this.winningPlayer;
+        updatedGame.board = this.board.map(element => element);
+        
+        if (updatedGame.board[cellNum] !== "EMPTY") {
+            return ["SquareFilled", updatedGame];
         }
 
-        if (this.winningPlayer) {
-            return "GameOver";
+        if (updatedGame.winningPlayer) {
+            return ["GameOver", updatedGame];
         }
 
-        if (this.currentPlayer === "PlayerX") {
-            this.board[cellNum] = "X";
+        if (updatedGame.currentPlayer === "PlayerX") {
+            updatedGame.board[cellNum] = "X";
         } else {
-            this.board[cellNum] = "O";
+            updatedGame.board[cellNum] = "O";
         }
 
-        this.checkForVictory();
-        if(this.winningPlayer) {
-            return "Victory";
+        updatedGame.checkForVictory();
+        if(updatedGame.winningPlayer) {
+            return ["Victory", updatedGame];
         }
 
-        if (this.currentPlayer === "PlayerX") {
-            this.currentPlayer = "PlayerO";
+        if (updatedGame.currentPlayer === "PlayerX") {
+            updatedGame.currentPlayer = "PlayerO";
         } else {
-            this.currentPlayer = "PlayerX";
+            updatedGame.currentPlayer = "PlayerX";
         }
-        return "WaitingForMove";
+        return ["WaitingForMove", updatedGame];
     }
 
     private checkForVictory (): void {
