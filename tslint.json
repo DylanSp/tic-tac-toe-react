@@ -9,6 +9,7 @@
   },
   "rules": {
     "interface-name": [true, "never-prefix"],
+    "jsx-no-lambda": false,
     "variable-name": [
       true, 
       "ban-keywords",
