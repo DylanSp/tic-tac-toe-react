@@ -1,7 +1,7 @@
 type CellState = "X" | "O" | "EMPTY";
 export type Player = "PlayerX" | "PlayerO";
 export type MoveResult = "Victory" | "WaitingForMove" | "SquareFilled" | "GameOver";
-type CellNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+export type CellNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export class TicTacToeGame {
     public currentPlayer: Player;

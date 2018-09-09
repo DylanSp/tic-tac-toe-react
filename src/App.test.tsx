@@ -2,13 +2,22 @@ import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as React from 'react';
 import App, { AppProps, AppState } from './App';
 import { StatusBar } from './StatusBar';
-// import { StatusBar } from './StatusBar';
+import { CellNumber } from './TicTacToeGame';
+
+// convenience function for making moves
+function makeGameMove(app: ReactWrapper<AppProps, AppState>, cellNum: CellNumber): void {
+    app.setState((state: AppState) => ({
+        game: state.game.makeMove(cellNum)[1] // ignore move result, update game state
+    }));
+}
 
 it('renders without crashing', () => {
     shallow(<App />);
 });
 
 describe("Status bar", () => {
+    // TODO - convenience function for checking status bar text?
+
     let app: ReactWrapper<AppProps, AppState>;
 
     beforeEach(() => {
@@ -24,19 +33,32 @@ describe("Status bar", () => {
     });
 
     it("Prompts O to move after one move", () => {
-        app.state().game.makeMove(0);
+        makeGameMove(app, 0);
         expect(app.find(StatusBar).text()).toMatch(/Player O to move/);
     });
 
     it("Prompts X to move after two moves", () => {
-        expect(false).toBe(true);
+        makeGameMove(app, 0);
+        makeGameMove(app, 1);
+        expect(app.find(StatusBar).text()).toMatch(/Player X to move/);
     });
 
     it("Announces X has won when appropriate", () => {
-        expect(false).toBe(true);
+        makeGameMove(app, 0); // X moves
+        makeGameMove(app, 6); // O moves
+        makeGameMove(app, 1); // X moves
+        makeGameMove(app, 7); // O moves
+        makeGameMove(app, 2); // X moves, completing top row
+        expect(app.find(StatusBar).text()).toMatch(/Player X has won!/);
     });
 
     it("Announces O has won when appropriate", () => {
-        expect(false).toBe(true);
+        makeGameMove(app, 0); // X moves
+        makeGameMove(app, 6); // O moves
+        makeGameMove(app, 1); // X moves
+        makeGameMove(app, 7); // O moves
+        makeGameMove(app, 5); // X moves
+        makeGameMove(app, 8); // O moves, completing bottom row
+        expect(app.find(StatusBar).text()).toMatch(/Player O has won!/);
     });
 });
