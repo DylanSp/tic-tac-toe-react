@@ -69,8 +69,8 @@ export class TicTacToeGame {
             "col2": [this._board[1], this._board[4], this._board[7]],
             "col3": [this._board[2], this._board[5], this._board[8]],
 
-            "diag1": [this._board[0], this._board[5], this._board[8]],
-            "diag2": [this._board[3], this._board[5], this._board[7]]
+            "diag1": [this._board[0], this._board[4], this._board[8]],
+            "diag2": [this._board[2], this._board[4], this._board[6]]
         }
 
         for (const line in lines) {
