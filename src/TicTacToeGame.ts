@@ -1,16 +1,15 @@
 export type Player = "PlayerX" | "PlayerO";
 export type MoveResult = "Victory" | "WaitingForMove" | "SquareFilled" | "GameOver";
 export type CellNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-type CellState = "X" | "O" | "EMPTY";
+export type CellState = "X" | "O" | "EMPTY";
 
 export class TicTacToeGame {
     private _currentPlayer: Player;
     private _winningPlayer?: Player;
-    private board: CellState[];
+    private _board: CellState[];
     
     constructor () {
-        this.board = new Array<CellState>(9);
-        this.board.fill("EMPTY");
+        this._board = new Array<CellState>(9).fill("EMPTY");
         this._currentPlayer = "PlayerX";
         this._winningPlayer = undefined;
     }
@@ -23,13 +22,17 @@ export class TicTacToeGame {
         return this._winningPlayer;
     }
 
+    public get board(): ReadonlyArray<CellState> {
+        return this._board;
+    }
+
     public makeMove(cellNum: CellNumber): [MoveResult, TicTacToeGame] {
         const updatedGame = new TicTacToeGame();
         updatedGame._currentPlayer = this.currentPlayer;
         updatedGame._winningPlayer = this.winningPlayer;
-        updatedGame.board = this.board.map(element => element);
+        updatedGame._board = this._board.map(element => element);
         
-        if (updatedGame.board[cellNum] !== "EMPTY") {
+        if (updatedGame._board[cellNum] !== "EMPTY") {
             return ["SquareFilled", updatedGame];
         }
 
@@ -38,9 +41,9 @@ export class TicTacToeGame {
         }
 
         if (updatedGame.currentPlayer === "PlayerX") {
-            updatedGame.board[cellNum] = "X";
+            updatedGame._board[cellNum] = "X";
         } else {
-            updatedGame.board[cellNum] = "O";
+            updatedGame._board[cellNum] = "O";
         }
 
         updatedGame.checkForVictory();
@@ -58,16 +61,16 @@ export class TicTacToeGame {
 
     private checkForVictory (): void {
         const lines = {
-            "row1": [this.board[0], this.board[1], this.board[2]],
-            "row2": [this.board[3], this.board[4], this.board[5]],
-            "row3": [this.board[6], this.board[7], this.board[8]],
+            "row1": [this._board[0], this._board[1], this._board[2]],
+            "row2": [this._board[3], this._board[4], this._board[5]],
+            "row3": [this._board[6], this._board[7], this._board[8]],
 
-            "col1": [this.board[0], this.board[3], this.board[6]],
-            "col2": [this.board[1], this.board[4], this.board[7]],
-            "col3": [this.board[2], this.board[5], this.board[8]],
+            "col1": [this._board[0], this._board[3], this._board[6]],
+            "col2": [this._board[1], this._board[4], this._board[7]],
+            "col3": [this._board[2], this._board[5], this._board[8]],
 
-            "diag1": [this.board[0], this.board[5], this.board[8]],
-            "diag2": [this.board[3], this.board[5], this.board[7]]
+            "diag1": [this._board[0], this._board[5], this._board[8]],
+            "diag2": [this._board[3], this._board[5], this._board[7]]
         }
 
         for (const line in lines) {

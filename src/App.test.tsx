@@ -1,9 +1,9 @@
 import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as React from 'react';
 import App, { AppProps, AppState } from './App';
+import { NewGameButton } from './NewGameButton';
 import { StatusBar } from './StatusBar';
 import { CellNumber } from './TicTacToeGame';
-import { NewGameButton } from './NewGameButton';
 
 // convenience function for making moves
 function makeGameMove(app: ReactWrapper<AppProps, AppState>, cellNum: CellNumber): void {
