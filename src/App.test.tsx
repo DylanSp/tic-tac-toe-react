@@ -1,5 +1,9 @@
 import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as React from 'react';
+
+// have to use this import form so we have an object to pass to jest.spyOn()
+import * as Toast from 'react-toastify';
+
 import App, { AppProps, AppState } from './App';
 import { NewGameButton } from './NewGameButton';
 import { StatusBar } from './StatusBar';
@@ -120,6 +124,8 @@ describe("Gameboard cells", () => {
     });
 
     it("Shows a message for X's victory when X clicks a winning cell", () => {
+        const spy = jest.spyOn(Toast, "toast");
+
         // X moves
         const cell0 = app.find("[cellNum=0]");
         cell0.simulate("click");
@@ -137,22 +143,82 @@ describe("Gameboard cells", () => {
         cell7.simulate("click");
 
         // X moves, completing top row
-        // TODO - uncomment once UI switched to use toasts instead of window.alert
-        // const cell2 = app.find("[cellNum=2]");
-        // cell2.simulate("click");
+        const cell2 = app.find("[cellNum=2]");
+        cell2.simulate("click");
 
-        expect(true).toBe(false);
+        expect(spy).toBeCalledWith("PlayerX has won! Congratulations!")
     });
 
     it("Shows a message for O's victory when X clicks a winning cell", () => {
-        expect(true).toBe(false);
+        const spy = jest.spyOn(Toast, "toast");
+
+        // X moves
+        const cell0 = app.find("[cellNum=0]");
+        cell0.simulate("click");
+
+        // O moves
+        const cell6 = app.find("[cellNum=6]");
+        cell6.simulate("click");
+
+        // X moves
+        const cell1 = app.find("[cellNum=1]");
+        cell1.simulate("click");
+
+        // O moves
+        const cell7 = app.find("[cellNum=7]");
+        cell7.simulate("click");
+
+        // X moves
+        const cell4 = app.find("[cellNum=4]");
+        cell4.simulate("click");
+        
+        // O moves, completing bottom row
+        const cell8 = app.find("[cellNum=8]");
+        cell8.simulate("click");
+
+        expect(spy).toBeCalledWith("PlayerO has won! Congratulations!")
     });
 
     it("Shows a message for when a player clicks on an already-filled cell", () => {
-        expect(true).toBe(false);
+        const spy = jest.spyOn(Toast, "toast");
+
+        let cell0 = app.find("[cellNum=0]");
+        cell0.simulate("click");
+
+        // reset cell0 to reference new component after update
+        cell0 = app.find("[cellNum=0]");
+        cell0.simulate("click");
+        
+        expect(spy).toBeCalledWith("Square is already filled!");
     });
 
     it("Shows a message for when a player clicks on a cell in a completed game", () => {
-        expect(true).toBe(false);
+        const spy = jest.spyOn(Toast, "toast");
+
+        // X moves
+        const cell0 = app.find("[cellNum=0]");
+        cell0.simulate("click");
+
+        // O moves
+        const cell6 = app.find("[cellNum=6]");
+        cell6.simulate("click");
+
+        // X moves
+        const cell1 = app.find("[cellNum=1]");
+        cell1.simulate("click");
+
+        // O moves
+        const cell7 = app.find("[cellNum=7]");
+        cell7.simulate("click");
+
+        // X moves, completing top row
+        const cell2 = app.find("[cellNum=2]");
+        cell2.simulate("click");
+
+        // move that should trigger notification
+        const cell4 = app.find("[cellNum=4]");
+        cell4.simulate("click");
+
+        expect(spy).toBeCalledWith("Game is already over!");
     });
 });

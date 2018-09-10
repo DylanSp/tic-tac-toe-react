@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import { Gameboard } from './Gameboard';
 import { NewGameButton } from './NewGameButton';
 import { StatusBar } from './StatusBar';
@@ -19,6 +21,7 @@ class App extends React.Component<AppProps, AppState> {
     public render() {
         return (
             <div>
+                <ToastContainer />
                 Hello!
                 <Gameboard
                     boardState={this.state.game.board}
@@ -37,18 +40,15 @@ class App extends React.Component<AppProps, AppState> {
     // Needs to be a lambda in order to avoid bug with "this"
     public handleMove = (cellNum: CellNumber): void => {
         const [result, updatedGame] = this.state.game.makeMove(cellNum);
-        // TODO - instead of alerting, display toast
-        // materialize? https://materializecss.com/toasts.html
-        // react-toastify? https://www.npmjs.com/package/react-toastify
         switch (result) {
             case "GameOver":
-                window.alert("Game is already over!");
+                toast("Game is already over!");
                 break;
             case "SquareFilled":
-                window.alert("Square is already filled!");
+                toast("Square is already filled!");
                 break;
             case "Victory":
-                window.alert(`${updatedGame.winningPlayer} has won! Congratulations!`);
+                toast(`${updatedGame.winningPlayer} has won! Congratulations!`);
                 this.setState({game: updatedGame});
                 break;
             case "WaitingForMove":
