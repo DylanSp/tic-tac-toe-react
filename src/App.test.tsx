@@ -90,13 +90,16 @@ describe("Gameboard cells", () => {
     // TODO - convenience function for finding and clicking on a cell?
 
     let app: ReactWrapper<AppProps, AppState>;
+    let spy: jest.SpyInstance<Toast.Toast>;
 
     beforeEach(() => {
         app = mount(<App />);
+        spy = jest.spyOn(Toast, "toast");
     });
 
     afterEach(() => {
         app = app.unmount();
+        spy.mockClear();
     });
 
     it("Marks a cell as X when Player X clicks", () => {
@@ -124,8 +127,6 @@ describe("Gameboard cells", () => {
     });
 
     it("Shows a message for X's victory when X clicks a winning cell", () => {
-        const spy = jest.spyOn(Toast, "toast");
-
         // X moves
         const cell0 = app.find("[cellNum=0]");
         cell0.simulate("click");
@@ -146,12 +147,11 @@ describe("Gameboard cells", () => {
         const cell2 = app.find("[cellNum=2]");
         cell2.simulate("click");
 
-        expect(spy).toBeCalledWith("PlayerX has won! Congratulations!")
+        // check first argument of first call to toast()
+        expect(spy.mock.calls[0][0]).toMatch(/PlayerX has won/);
     });
 
     it("Shows a message for O's victory when X clicks a winning cell", () => {
-        const spy = jest.spyOn(Toast, "toast");
-
         // X moves
         const cell0 = app.find("[cellNum=0]");
         cell0.simulate("click");
@@ -176,12 +176,11 @@ describe("Gameboard cells", () => {
         const cell8 = app.find("[cellNum=8]");
         cell8.simulate("click");
 
-        expect(spy).toBeCalledWith("PlayerO has won! Congratulations!")
+        // check first argument of first call to toast()
+        expect(spy.mock.calls[0][0]).toMatch(/PlayerO has won/);
     });
 
     it("Shows a message for when a player clicks on an already-filled cell", () => {
-        const spy = jest.spyOn(Toast, "toast");
-
         let cell0 = app.find("[cellNum=0]");
         cell0.simulate("click");
 
@@ -189,12 +188,11 @@ describe("Gameboard cells", () => {
         cell0 = app.find("[cellNum=0]");
         cell0.simulate("click");
         
-        expect(spy).toBeCalledWith("Square is already filled!");
+        // check first argument of first call to toast()
+        expect(spy.mock.calls[0][0]).toMatch(/Square is already filled/);
     });
 
     it("Shows a message for when a player clicks on a cell in a completed game", () => {
-        const spy = jest.spyOn(Toast, "toast");
-
         // X moves
         const cell0 = app.find("[cellNum=0]");
         cell0.simulate("click");
@@ -219,6 +217,8 @@ describe("Gameboard cells", () => {
         const cell4 = app.find("[cellNum=4]");
         cell4.simulate("click");
 
-        expect(spy).toBeCalledWith("Game is already over!");
+        // check first argument of SECOND call to toast()
+        // first call to toast() was from game being won
+        expect(spy.mock.calls[1][0]).toMatch(/Game is already over/);
     });
 });
