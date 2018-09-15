@@ -2,6 +2,7 @@ import { SFC } from "react";
 import * as React from "react";
 import { Cell } from "./Cell";
 import "./Gameboard.css";
+import { Grid } from "./Grid";
 import { CellNumber, CellState } from "./TicTacToeGame";
 
 interface GameboardProps {
@@ -19,5 +20,6 @@ export const Gameboard: SFC<GameboardProps> = (props) => (
                     cellState={cellState}
                     handleMove={props.handleMove}
                 />)}
+        <Grid />
     </div>
 );
