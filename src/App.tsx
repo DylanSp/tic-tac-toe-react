@@ -29,7 +29,7 @@ class App extends React.Component<AppProps, AppState> {
                     handleMove={this.handleMove}
                 />
                 <StatusBar
-                    isGameWon={!!this.state.game.winningPlayer} 
+                    isGameOver={!!this.state.game.winningPlayer} 
                     currentPlayer={this.state.game.currentPlayer}
                     winningPlayer={this.state.game.winningPlayer}
                 />
@@ -42,7 +42,7 @@ class App extends React.Component<AppProps, AppState> {
     public handleMove = (cellNum: CellNumber): void => {
         const [result, updatedGame] = this.state.game.makeMove(cellNum);
         switch (result) {
-            case "GameOver":
+            case "GameAlreadyOver":
                 toast("Game is already over!", {
                     className: "errorToast",
                     hideProgressBar: true
@@ -54,11 +54,18 @@ class App extends React.Component<AppProps, AppState> {
                     hideProgressBar: true
                 });
                 break;
-            case "Victory":
-                toast(`${updatedGame.winningPlayer} has won! Congratulations!`, {
-                    className: "successToast",
-                    hideProgressBar: true
-                });
+            case "GameFinished":
+                if(updatedGame.winningPlayer === "DrawnGame") {
+                    toast("Game drawn!", {
+                        className: "successToast",
+                        hideProgressBar: true
+                    })
+                } else {
+                    toast(`${updatedGame.winningPlayer} has won! Congratulations!`, {
+                        className: "successToast",
+                        hideProgressBar: true
+                    });
+                }
                 this.setState({game: updatedGame});
                 break;
             case "WaitingForMove":

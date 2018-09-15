@@ -22,6 +22,7 @@ it('renders without crashing', () => {
 
 describe("Status bar", () => {
     // TODO - convenience function for checking status bar text?
+    // TODO - convert move sequences into array of moves, forEach(num => makeGameMove(num))?
 
     let app: ReactWrapper<AppProps, AppState>;
 
@@ -66,6 +67,19 @@ describe("Status bar", () => {
         makeGameMove(app, 8); // O moves, completing bottom row
         expect(app.find(StatusBar).text()).toMatch(/Player O has won!/);
     });
+
+    it("Announces drawn game when appropriate", () => {
+        makeGameMove(app, 0); // X moves
+        makeGameMove(app, 1); // O moves
+        makeGameMove(app, 3); // X moves
+        makeGameMove(app, 4); // O moves
+        makeGameMove(app, 7); // X moves
+        makeGameMove(app, 6); // O moves
+        makeGameMove(app, 2); // X moves
+        makeGameMove(app, 5); // O moves
+        makeGameMove(app, 8); // X moves, filling board
+        expect(app.find(StatusBar).text()).toMatch(/Game is drawn!/);
+    });
 });
 
 describe("New game button", () => {
@@ -83,6 +97,7 @@ describe("New game button", () => {
         makeGameMove(app, 0);
         app.find(NewGameButton).simulate("click");
         expect(app.state().game.currentPlayer).toBe("PlayerX");
+        expect(app.state().game.board[0]).toBe("EMPTY");
     });
 });
 
@@ -178,6 +193,47 @@ describe("Gameboard cells", () => {
 
         // check first argument of first call to toast()
         expect(spy.mock.calls[0][0]).toMatch(/PlayerO has won/);
+    });
+
+    it("Shows a message for drawn game when board is filled without a winner", () => {
+        // X moves
+        const cell0 = app.find("[cellNum=0]");
+        cell0.simulate("click");
+
+        // O moves
+        const cell1 = app.find("[cellNum=1]");
+        cell1.simulate("click");
+
+        // X moves
+        const cell3 = app.find("[cellNum=3]");
+        cell3.simulate("click");
+
+        // O moves
+        const cell4 = app.find("[cellNum=4]");
+        cell4.simulate("click");
+
+        // X moves
+        const cell7 = app.find("[cellNum=7]");
+        cell7.simulate("click");
+
+        // O moves
+        const cell6 = app.find("[cellNum=6]");
+        cell6.simulate("click");
+
+        // X moves
+        const cell2 = app.find("[cellNum=2]");
+        cell2.simulate("click");
+
+        // O moves
+        const cell5 = app.find("[cellNum=5]");
+        cell5.simulate("click");
+
+        // X moves, filling board
+        const cell8 = app.find("[cellNum=8]");
+        cell8.simulate("click");
+
+        // check first argument of first call to toast()
+        expect(spy.mock.calls[0][0]).toMatch(/Game drawn/);
     });
 
     it("Shows a message for when a player clicks on an already-filled cell", () => {

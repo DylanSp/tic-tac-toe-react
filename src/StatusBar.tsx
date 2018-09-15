@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Player } from "./TicTacToeGame";
+import { Player, WinningPlayer } from "./TicTacToeGame";
 
 interface StatusBarProps {
-    isGameWon: boolean;
+    isGameOver: boolean;
     currentPlayer: Player;
-    winningPlayer?: Player;
+    winningPlayer: WinningPlayer;
 }
 
 export class StatusBar extends React.PureComponent<StatusBarProps> {
@@ -13,11 +13,13 @@ export class StatusBar extends React.PureComponent<StatusBarProps> {
     }
 
     public render() {
-        if (this.props.isGameWon) {
+        if (this.props.isGameOver) {
             if (this.props.winningPlayer === "PlayerX") {
                 return("Player X has won!");
             } else if (this.props.winningPlayer === "PlayerO") {
                 return("Player O has won!");
+            } else if (this.props.winningPlayer === "DrawnGame") {
+                return("Game is drawn!");
             } else {
                 throw new Error("Game logic error; game is won with unspecified victor");
             }

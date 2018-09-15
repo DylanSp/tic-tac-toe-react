@@ -1,11 +1,12 @@
 export type Player = "PlayerX" | "PlayerO";
-export type MoveResult = "Victory" | "WaitingForMove" | "SquareFilled" | "GameOver";
+export type MoveResult = "GameFinished" | "WaitingForMove" | "SquareFilled" | "GameAlreadyOver";
 export type CellNumber = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 export type CellState = "X" | "O" | "EMPTY";
+export type WinningPlayer = Player | "DrawnGame" | undefined;
 
 export class TicTacToeGame {
     private _currentPlayer: Player;
-    private _winningPlayer?: Player;
+    private _winningPlayer: WinningPlayer;
     private _board: CellState[];
     
     constructor () {
@@ -18,7 +19,7 @@ export class TicTacToeGame {
         return this._currentPlayer;
     }
 
-    public get winningPlayer(): Player | undefined {
+    public get winningPlayer(): WinningPlayer {
         return this._winningPlayer;
     }
 
@@ -37,7 +38,7 @@ export class TicTacToeGame {
         }
 
         if (updatedGame.winningPlayer) {
-            return ["GameOver", updatedGame];
+            return ["GameAlreadyOver", updatedGame];
         }
 
         if (updatedGame.currentPlayer === "PlayerX") {
@@ -46,9 +47,9 @@ export class TicTacToeGame {
             updatedGame._board[cellNum] = "O";
         }
 
-        updatedGame.checkForVictory();
+        updatedGame.checkForEnd();
         if(updatedGame.winningPlayer) {
-            return ["Victory", updatedGame];
+            return ["GameFinished", updatedGame];
         }
 
         if (updatedGame.currentPlayer === "PlayerX") {
@@ -59,7 +60,7 @@ export class TicTacToeGame {
         return ["WaitingForMove", updatedGame];
     }
 
-    private checkForVictory (): void {
+    private checkForEnd (): void {
         const lines = {
             "row1": [this._board[0], this._board[1], this._board[2]],
             "row2": [this._board[3], this._board[4], this._board[5]],
@@ -82,6 +83,13 @@ export class TicTacToeGame {
                 return;
             }
         }
+
+        // check for draw
+        if (this._board.every(cell => cell !== "EMPTY")) {
+            this._winningPlayer = "DrawnGame";
+            return;
+        }
+
         this._winningPlayer = undefined; // no winning player detected
         return;
     }
