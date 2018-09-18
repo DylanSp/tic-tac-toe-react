@@ -13,9 +13,7 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.13",
@@ -27,7 +25,6 @@
     "@types/react-toastify": "^4.0.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "gh-pages": "^1.2.0",
     "typescript": "^3.0.3"
   },
   "homepage": "https://dylansp.github.io/tic-tac-toe-react"
