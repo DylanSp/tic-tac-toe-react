@@ -5,7 +5,6 @@ import * as React from 'react';
 import * as Toast from 'react-toastify';
 
 import App, { AppProps, AppState } from './App';
-import { NewGameButton } from './NewGameButton';
 import { StatusBar } from './StatusBar';
 import { CellNumber } from './TicTacToeGame';
 
@@ -95,7 +94,7 @@ describe("New game button", () => {
 
     it("Resets the game after one move", () => {
         makeGameMove(app, 0);
-        app.find(NewGameButton).simulate("click");
+        app.find("#newGameButton").simulate("click");
         expect(app.state().game.currentPlayer).toBe("PlayerX");
         expect(app.state().game.board[0]).toBe("EMPTY");
     });

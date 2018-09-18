@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./StatusBar.css";
 import { Player, WinningPlayer } from "./TicTacToeGame";
 
 interface StatusBarProps {
@@ -13,22 +14,30 @@ export class StatusBar extends React.PureComponent<StatusBarProps> {
     }
 
     public render() {
+        let text: string;
+
         if (this.props.isGameOver) {
             if (this.props.winningPlayer === "PlayerX") {
-                return("Player X has won!");
+                text = "Player X has won!";
             } else if (this.props.winningPlayer === "PlayerO") {
-                return("Player O has won!");
+                text = "Player O has won!";
             } else if (this.props.winningPlayer === "DrawnGame") {
-                return("Game is drawn!");
+                text = "Game is drawn!";
             } else {
                 throw new Error("Game logic error; game is won with unspecified victor");
             }
         } else {
             if (this.props.currentPlayer === "PlayerX") {
-                return("Player X to move");
+                text = "Player X to move";
             } else {
-                return("Player O to move");
+                text = "Player O to move";
             }
         }
+
+        return (
+            <div className="statusBarContainer">
+                {text}
+            </div>
+        );
     }
 }
