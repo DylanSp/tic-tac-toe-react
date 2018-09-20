@@ -1,5 +1,9 @@
 .boardWrapper {
+    flex: 1 300px;
     display: grid;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 100px 100px 100px;
+    height: 300px;
+    width: 300px;
+    min-height: 300px;
 }
