@@ -1,11 +1,3 @@
-.errorToast {
-    background-color: red;
-}
-
-.successToast {
-    background-color: green;
-}
-
 .visibleElementsContainer {
     display: flex;
     flex-flow: column;

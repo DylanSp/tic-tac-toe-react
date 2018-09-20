@@ -44,26 +44,22 @@ class App extends React.Component<AppProps, AppState> {
         const [result, updatedGame] = this.state.game.makeMove(cellNum);
         switch (result) {
             case "GameAlreadyOver":
-                toast("Game is already over!", {
-                    className: "errorToast",
+                toast.error("Game is already over!", {
                     hideProgressBar: true
                 });
                 break;
             case "SquareFilled":
-                toast("Square is already filled!", {
-                    className: "errorToast",
-                    hideProgressBar: true
+                toast.error("Square is already filled!", {
+                   hideProgressBar: true
                 });
                 break;
             case "GameFinished":
                 if(updatedGame.winningPlayer === "DrawnGame") {
-                    toast("Game drawn!", {
-                        className: "successToast",
+                    toast.info("Game drawn!", {
                         hideProgressBar: true
                     })
                 } else {
-                    toast(`${updatedGame.winningPlayer} has won! Congratulations!`, {
-                        className: "successToast",
+                    toast.success(`${updatedGame.winningPlayer} has won! Congratulations!`, {
                         hideProgressBar: true
                     });
                 }
