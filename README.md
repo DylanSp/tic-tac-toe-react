@@ -2,7 +2,10 @@
 
 # Yet Another React Tic-Tac-Toe
 
+[Play this app on GitHub Pages!](https://dylansp.github.io/tic-tac-toe-react/)
+
 This project is a simple client-side tic-tac-toe game, using Typescript and React. It's a learning experience for me to practice Typescript/React and learn some design/frontend development techniques. I'm also using this project to learn tools such as Travis CI.
+
 
 ## Attributions
 
