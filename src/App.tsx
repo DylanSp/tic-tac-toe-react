@@ -23,16 +23,18 @@ class App extends React.Component<AppProps, AppState> {
         return (
             <div>
                 <ToastContainer />
-                <StatusBar
-                    isGameOver={!!this.state.game.winningPlayer} 
-                    currentPlayer={this.state.game.currentPlayer}
-                    winningPlayer={this.state.game.winningPlayer}
-                />
-                <Gameboard
-                    boardState={this.state.game.board}
-                    handleMove={this.handleMove}
-                />
-                <NewGameButton startNewGame={() => this.setState({game: new TicTacToeGame()})} />
+                <div className="visibleElementsContainer">
+                    <StatusBar
+                        isGameOver={!!this.state.game.winningPlayer} 
+                        currentPlayer={this.state.game.currentPlayer}
+                        winningPlayer={this.state.game.winningPlayer}
+                    />
+                    <Gameboard
+                        boardState={this.state.game.board}
+                        handleMove={this.handleMove}
+                    />
+                    <NewGameButton startNewGame={() => this.setState({game: new TicTacToeGame()})} />
+                </div>
             </div>
         );
     }
