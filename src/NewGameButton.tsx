@@ -9,7 +9,7 @@ interface NewGameButtonProps {
 // button element has an ID so tests can find it
 export const NewGameButton: SFC<NewGameButtonProps> = (props) => (
     <div className="newGameButtonContainer">
-        <button id="newGameButton" type="button" onClick={props.startNewGame}>
+        <button id="newGameButton" className="newGameButton" type="button" onClick={props.startNewGame}>
             Start New Game
         </button>
     </div>

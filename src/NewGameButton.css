@@ -2,3 +2,8 @@
     flex: 1;
     margin: 20px;
 }
+
+.newGameButton {
+    font-family: "Amatic SC", cursive;
+    font-size: 200%;
+}
