@@ -1,3 +1,11 @@
 .statusBarContainer {
     flex: 1;
+
+    /* Center text vertically */
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    
+    min-height: fit-content;
+    margin: 20px;
 }
