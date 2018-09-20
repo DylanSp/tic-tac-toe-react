@@ -1,11 +1,12 @@
 .statusBarContainer {
     flex: 1;
+    min-height: fit-content;
+    margin: 20px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 400%;
 
     /* Center text vertically */
     display: flex;
     flex-flow: column;
     justify-content: center;
-    
-    min-height: fit-content;
-    margin: 20px;
 }
