@@ -17,9 +17,6 @@ it('renders without crashing', () => {
 });
 
 describe("Status bar", () => {
-    // TODO - convenience function for checking status bar text?
-    // TODO - convert move sequences into array of moves, forEach(num => makeGameMove(num))?
-
     let app: ReactWrapper<AppProps, AppState>;
 
     beforeEach(() => {
@@ -98,8 +95,6 @@ describe("New game button", () => {
 });
 
 describe("Gameboard cells", () => {
-    // TODO - convenience function for finding and clicking on a cell?
-
     let app: ReactWrapper<AppProps, AppState>;
 
     beforeEach(() => {
