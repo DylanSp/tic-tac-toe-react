@@ -1,7 +1,5 @@
 import { TicTacToeGame } from "./TicTacToeGame";
 
-// TODO: convert repetitive code to some sort of fp-ts State monad?
-
 describe ("Tic Tac Toe game class", () => {
     it("Recognizes player X's victory correctly", () => {
         const game0 = new TicTacToeGame();
