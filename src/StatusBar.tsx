@@ -9,10 +9,6 @@ interface StatusBarProps {
 }
 
 export class StatusBar extends React.PureComponent<StatusBarProps> {
-    constructor(props: StatusBarProps) {
-        super(props);
-    }
-
     public render() {
         let text: string;
 

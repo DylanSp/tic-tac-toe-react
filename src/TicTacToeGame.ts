@@ -8,8 +8,8 @@ export class TicTacToeGame {
     private _currentPlayer: Player;
     private _winningPlayer: WinningPlayer;
     private _board: CellState[];
-    
-    constructor () {
+
+    constructor() {
         this._board = new Array<CellState>(9).fill("EMPTY");
         this._currentPlayer = "PlayerX";
         this._winningPlayer = undefined;
@@ -31,8 +31,8 @@ export class TicTacToeGame {
         const updatedGame = new TicTacToeGame();
         updatedGame._currentPlayer = this.currentPlayer;
         updatedGame._winningPlayer = this.winningPlayer;
-        updatedGame._board = this._board.map(element => element);
-        
+        updatedGame._board = this._board.map((element) => element);
+
         if (updatedGame._board[cellNum] !== "EMPTY") {
             return ["SquareFilled", updatedGame];
         }
@@ -48,7 +48,7 @@ export class TicTacToeGame {
         }
 
         updatedGame.checkForEnd();
-        if(updatedGame.winningPlayer) {
+        if (updatedGame.winningPlayer) {
             return ["GameFinished", updatedGame];
         }
 
@@ -60,7 +60,7 @@ export class TicTacToeGame {
         return ["WaitingForMove", updatedGame];
     }
 
-    private checkForEnd (): void {
+    private checkForEnd(): void {
         const lines = [
             [this._board[0], this._board[1], this._board[2]],
             [this._board[3], this._board[4], this._board[5]],
@@ -75,17 +75,17 @@ export class TicTacToeGame {
         ];
 
         for (const line of lines) {
-            if (line.every(cell => cell === "X")) {
+            if (line.every((cell) => cell === "X")) {
                 this._winningPlayer = "PlayerX";
                 return;
-            } else if (line.every(cell => cell === "O")) {
+            } else if (line.every((cell) => cell === "O")) {
                 this._winningPlayer = "PlayerO";
                 return;
             }
         }
 
         // check for draw
-        if (this._board.every(cell => cell !== "EMPTY")) {
+        if (this._board.every((cell) => cell !== "EMPTY")) {
             this._winningPlayer = "DrawnGame";
             return;
         }
