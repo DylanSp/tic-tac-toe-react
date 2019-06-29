@@ -1,10 +1,18 @@
 {
-  "main.css": "static/css/main.b434ba5c.css",
-  "main.css.map": "static/css/main.b434ba5c.css.map",
-  "main.js": "static/js/main.05824985.js",
-  "main.js.map": "static/js/main.05824985.js.map",
-  "static/media/amatic-sc-latin-400.woff": "static/media/amatic-sc-latin-400.3426c3e0.woff",
-  "static/media/amatic-sc-latin-400.woff2": "static/media/amatic-sc-latin-400.f8c99dce.woff2",
-  "static/media/amatic-sc-latin-700.woff": "static/media/amatic-sc-latin-700.950e2835.woff",
-  "static/media/amatic-sc-latin-700.woff2": "static/media/amatic-sc-latin-700.e1d1ea2b.woff2"
+  "files": {
+    "main.css": "/tic-tac-toe-react/static/css/main.57897cff.chunk.css",
+    "main.js": "/tic-tac-toe-react/static/js/main.824a3acf.chunk.js",
+    "main.js.map": "/tic-tac-toe-react/static/js/main.824a3acf.chunk.js.map",
+    "runtime~main.js": "/tic-tac-toe-react/static/js/runtime~main.27a0c5ca.js",
+    "runtime~main.js.map": "/tic-tac-toe-react/static/js/runtime~main.27a0c5ca.js.map",
+    "static/css/2.58650968.chunk.css": "/tic-tac-toe-react/static/css/2.58650968.chunk.css",
+    "static/js/2.989dc9f5.chunk.js": "/tic-tac-toe-react/static/js/2.989dc9f5.chunk.js",
+    "static/js/2.989dc9f5.chunk.js.map": "/tic-tac-toe-react/static/js/2.989dc9f5.chunk.js.map",
+    "index.html": "/tic-tac-toe-react/index.html",
+    "precache-manifest.aedd9bb8fbbc70cfb22a138f783e1365.js": "/tic-tac-toe-react/precache-manifest.aedd9bb8fbbc70cfb22a138f783e1365.js",
+    "service-worker.js": "/tic-tac-toe-react/service-worker.js",
+    "static/css/2.58650968.chunk.css.map": "/tic-tac-toe-react/static/css/2.58650968.chunk.css.map",
+    "static/css/main.57897cff.chunk.css.map": "/tic-tac-toe-react/static/css/main.57897cff.chunk.css.map",
+    "static/media/index.css": "/tic-tac-toe-react/static/media/amatic-sc-latin-700.e1d1ea2b.woff2"
+  }
 }
