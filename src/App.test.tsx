@@ -1,18 +1,18 @@
-import { mount, ReactWrapper, shallow } from 'enzyme';
-import * as React from 'react';
-import { toast } from 'react-toastify';
-import App, { AppProps, AppState } from './App';
-import { StatusBar } from './StatusBar';
-import { CellNumber } from './TicTacToeGame';
+import { mount, ReactWrapper, shallow } from "enzyme";
+import * as React from "react";
+import { toast } from "react-toastify";
+import App, { AppProps, AppState } from "./App";
+import { StatusBar } from "./StatusBar";
+import { CellNumber } from "./TicTacToeGame";
 
 // convenience function for making moves
 function makeGameMove(app: ReactWrapper<AppProps, AppState>, cellNum: CellNumber): void {
     app.setState((state: AppState) => ({
-        game: state.game.makeMove(cellNum)[1] // ignore move result, update game state
+        game: state.game.makeMove(cellNum)[1], // ignore move result, update game state
     }));
 }
 
-it('renders without crashing', () => {
+it("renders without crashing", () => {
     shallow(<App />);
 });
 
@@ -179,7 +179,7 @@ describe("Gameboard cells", () => {
         // X moves
         const cell4 = app.find("[cellNum=4]");
         cell4.simulate("click");
-        
+
         // O moves, completing bottom row
         const cell8 = app.find("[cellNum=8]");
         cell8.simulate("click");
@@ -242,7 +242,7 @@ describe("Gameboard cells", () => {
         // reset cell0 to reference new component after update
         cell0 = app.find("[cellNum=0]");
         cell0.simulate("click");
-        
+
         // check first argument of first call to toast.error()
         expect(spy.mock.calls[0][0]).toMatch(/Square is already filled/);
         spy.mockClear();

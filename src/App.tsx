@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import * as React from "react";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { Gameboard } from './Gameboard';
-import { NewGameButton } from './NewGameButton';
-import { StatusBar } from './StatusBar';
-import { CellNumber, TicTacToeGame } from './TicTacToeGame';
+import { Gameboard } from "./Gameboard";
+import { NewGameButton } from "./NewGameButton";
+import { StatusBar } from "./StatusBar";
+import { CellNumber, TicTacToeGame } from "./TicTacToeGame";
 
 export type AppProps = any;
 
@@ -16,7 +16,7 @@ export interface AppState {
 class App extends React.Component<AppProps, AppState> {
     constructor(props: AppProps) {
         super(props);
-        this.state= {game: new TicTacToeGame()};
+        this.state = {game: new TicTacToeGame()};
     }
 
     public render() {
@@ -25,7 +25,7 @@ class App extends React.Component<AppProps, AppState> {
                 <ToastContainer />
                 <div className="visibleElementsContainer">
                     <StatusBar
-                        isGameOver={!!this.state.game.winningPlayer} 
+                        isGameOver={!!this.state.game.winningPlayer}
                         currentPlayer={this.state.game.currentPlayer}
                         winningPlayer={this.state.game.winningPlayer}
                     />
@@ -45,22 +45,22 @@ class App extends React.Component<AppProps, AppState> {
         switch (result) {
             case "GameAlreadyOver":
                 toast.error("Game is already over!", {
-                    hideProgressBar: true
+                    hideProgressBar: true,
                 });
                 break;
             case "SquareFilled":
                 toast.error("Square is already filled!", {
-                   hideProgressBar: true
+                   hideProgressBar: true,
                 });
                 break;
             case "GameFinished":
-                if(updatedGame.winningPlayer === "DrawnGame") {
+                if (updatedGame.winningPlayer === "DrawnGame") {
                     toast.info("Game drawn!", {
-                        hideProgressBar: true
-                    })
+                        hideProgressBar: true,
+                    });
                 } else {
                     toast.success(`${updatedGame.winningPlayer} has won! Congratulations!`, {
-                        hideProgressBar: true
+                        hideProgressBar: true,
                     });
                 }
                 this.setState({game: updatedGame});

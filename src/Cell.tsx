@@ -10,9 +10,9 @@ interface CellProps {
 }
 
 export class Cell extends React.PureComponent<CellProps> {
-    private canvasRef: React.RefObject<HTMLCanvasElement>
+    private canvasRef: React.RefObject<HTMLCanvasElement>;
 
-    constructor (props: CellProps) {
+    constructor(props: CellProps) {
         super(props);
         this.canvasRef = React.createRef();
     }
@@ -25,7 +25,7 @@ export class Cell extends React.PureComponent<CellProps> {
         this.drawCellState();
     }
 
-    public render () {
+    public render() {
         return (
             <canvas
                 ref={this.canvasRef}

@@ -13,7 +13,7 @@ interface GameboardProps {
 export const Gameboard: SFC<GameboardProps> = (props) => (
     <div className="boardWrapper">
         {props.boardState
-            .map((cellState, index) => 
+            .map((cellState, index) =>
                 <Cell
                     key={index}
                     cellNum={index as CellNumber}

@@ -28,6 +28,8 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "jest-canvas-mock": "^2.1.0",
+    "tslint": "^5.18.0",
+    "tslint-react": "^4.0.0",
     "typescript": "^3.5.2"
   },
   "homepage": "https://dylansp.github.io/tic-tac-toe-react",
