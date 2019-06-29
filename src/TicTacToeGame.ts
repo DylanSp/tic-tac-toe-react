@@ -61,24 +61,24 @@ export class TicTacToeGame {
     }
 
     private checkForEnd (): void {
-        const lines = {
-            "row1": [this._board[0], this._board[1], this._board[2]],
-            "row2": [this._board[3], this._board[4], this._board[5]],
-            "row3": [this._board[6], this._board[7], this._board[8]],
+        const lines = [
+            [this._board[0], this._board[1], this._board[2]],
+            [this._board[3], this._board[4], this._board[5]],
+            [this._board[6], this._board[7], this._board[8]],
 
-            "col1": [this._board[0], this._board[3], this._board[6]],
-            "col2": [this._board[1], this._board[4], this._board[7]],
-            "col3": [this._board[2], this._board[5], this._board[8]],
+            [this._board[0], this._board[3], this._board[6]],
+            [this._board[1], this._board[4], this._board[7]],
+            [this._board[2], this._board[5], this._board[8]],
 
-            "diag1": [this._board[0], this._board[4], this._board[8]],
-            "diag2": [this._board[2], this._board[4], this._board[6]]
-        }
+            [this._board[0], this._board[4], this._board[8]],
+            [this._board[2], this._board[4], this._board[6]],
+        ];
 
-        for (const line in lines) {
-            if ((lines[line] as CellState[]).every(cell => cell === "X")) {
+        for (const line of lines) {
+            if (line.every(cell => cell === "X")) {
                 this._winningPlayer = "PlayerX";
                 return;
-            } else if ((lines[line] as CellState[]).every(cell => cell === "O")) {
+            } else if (line.every(cell => cell === "O")) {
                 this._winningPlayer = "PlayerO";
                 return;
             }
