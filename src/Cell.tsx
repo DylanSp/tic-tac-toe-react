@@ -32,6 +32,7 @@ export class Cell extends React.PureComponent<CellProps> {
                 height="100"
                 width="100"
                 className="cell"
+                id={`cell${this.props.cellNum}`}
                 onClick={() => this.props.handleMove(this.props.cellNum)}
             />
         );
