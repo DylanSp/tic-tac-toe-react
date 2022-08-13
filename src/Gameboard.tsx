@@ -1,4 +1,3 @@
-import { SFC } from "react";
 import * as React from "react";
 import { Cell } from "./Cell";
 import "./Gameboard.css";
@@ -10,7 +9,7 @@ interface GameboardProps {
     handleMove: (cellNum: CellNumber) => void;
 }
 
-export const Gameboard: SFC<GameboardProps> = (props) => (
+export const Gameboard = (props: GameboardProps) => (
     <div className="boardWrapper">
         {props.boardState
             .map((cellState, index) =>

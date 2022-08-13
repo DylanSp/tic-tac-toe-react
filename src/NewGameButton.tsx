@@ -1,4 +1,3 @@
-import { SFC } from "react";
 import * as React from "react";
 import "./NewGameButton.css";
 
@@ -7,7 +6,7 @@ interface NewGameButtonProps {
 }
 
 // button element has an ID so tests can find it
-export const NewGameButton: SFC<NewGameButtonProps> = (props) => (
+export const NewGameButton = (props: NewGameButtonProps) => (
     <div className="newGameButtonContainer">
         <button id="newGameButton" className="newGameButton" type="button" onClick={props.startNewGame}>
             Start New Game

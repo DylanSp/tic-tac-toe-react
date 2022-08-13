@@ -1,5 +1,5 @@
 import * as React from "react";
-import rough from "roughjs";
+import rough from "roughjs/bin/rough"; // see https://github.com/rough-stuff/rough/issues/145#issuecomment-616932359
 import "./Grid.css";
 
 export class Grid extends React.PureComponent<{}, {}> {
