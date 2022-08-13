@@ -15,7 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open --e2e --browser chrome"
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
@@ -23,7 +23,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-toastify": "^4.0.2",
-    "cypress": "^9.7.0",
+    "cypress": "^10.4.0",
     "tslint": "^5.20.1",
     "tslint-react": "^4.1.0",
     "typescript": "^4.7.4"
