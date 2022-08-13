@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/tic-tac-toe-react/static/css/main.57897cff.chunk.css",
-    "main.js": "/tic-tac-toe-react/static/js/main.824a3acf.chunk.js",
-    "main.js.map": "/tic-tac-toe-react/static/js/main.824a3acf.chunk.js.map",
-    "runtime~main.js": "/tic-tac-toe-react/static/js/runtime~main.27a0c5ca.js",
-    "runtime~main.js.map": "/tic-tac-toe-react/static/js/runtime~main.27a0c5ca.js.map",
-    "static/css/2.58650968.chunk.css": "/tic-tac-toe-react/static/css/2.58650968.chunk.css",
-    "static/js/2.989dc9f5.chunk.js": "/tic-tac-toe-react/static/js/2.989dc9f5.chunk.js",
-    "static/js/2.989dc9f5.chunk.js.map": "/tic-tac-toe-react/static/js/2.989dc9f5.chunk.js.map",
+    "main.css": "/tic-tac-toe-react/static/css/main.08044e7d.css",
+    "main.js": "/tic-tac-toe-react/static/js/main.08917ddb.js",
+    "static/media/amatic-sc-latin-400.woff": "/tic-tac-toe-react/static/media/amatic-sc-latin-400.4b5fc586e24677ff9a97.woff",
+    "static/media/amatic-sc-latin-700.woff": "/tic-tac-toe-react/static/media/amatic-sc-latin-700.5be99655ad53cd610750.woff",
+    "static/media/amatic-sc-latin-400.woff2": "/tic-tac-toe-react/static/media/amatic-sc-latin-400.fccf8d1e71f52fb89f4f.woff2",
+    "static/media/amatic-sc-latin-700.woff2": "/tic-tac-toe-react/static/media/amatic-sc-latin-700.12d5da7216f72a6fbc9a.woff2",
     "index.html": "/tic-tac-toe-react/index.html",
-    "precache-manifest.aedd9bb8fbbc70cfb22a138f783e1365.js": "/tic-tac-toe-react/precache-manifest.aedd9bb8fbbc70cfb22a138f783e1365.js",
-    "service-worker.js": "/tic-tac-toe-react/service-worker.js",
-    "static/css/2.58650968.chunk.css.map": "/tic-tac-toe-react/static/css/2.58650968.chunk.css.map",
-    "static/css/main.57897cff.chunk.css.map": "/tic-tac-toe-react/static/css/main.57897cff.chunk.css.map",
-    "static/media/index.css": "/tic-tac-toe-react/static/media/amatic-sc-latin-700.e1d1ea2b.woff2"
-  }
+    "main.08044e7d.css.map": "/tic-tac-toe-react/static/css/main.08044e7d.css.map",
+    "main.08917ddb.js.map": "/tic-tac-toe-react/static/js/main.08917ddb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.08044e7d.css",
+    "static/js/main.08917ddb.js"
+  ]
 }
