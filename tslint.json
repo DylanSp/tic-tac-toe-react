@@ -12,7 +12,7 @@
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "variable-name": [
-      true, 
+      true,
       "ban-keywords",
       "check-format",
       "allow-pascal-case",
