@@ -23,7 +23,6 @@
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/react-toastify": "^4.0.2",
-    "coveralls": "^3.0.4",
     "cypress": "^5.1.0",
     "tslint": "^5.18.0",
     "tslint-react": "^4.0.0",
