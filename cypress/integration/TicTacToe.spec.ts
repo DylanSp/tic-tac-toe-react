@@ -26,21 +26,21 @@ describe("Tic Tac Toe game", () => {
     });
 
     it("Announces X has won when appropriate", () => {
-      makeMove(0);  // X moves
-      makeMove(6);  // O moves
-      makeMove(1);  // X moves
-      makeMove(7);  // O moves
-      makeMove(2);  // X moves, completing top row
+      makeMove(0); // X moves
+      makeMove(6); // O moves
+      makeMove(1); // X moves
+      makeMove(7); // O moves
+      makeMove(2); // X moves, completing top row
       cy.get(".statusBarContainer").contains("Player X has won!");
     });
 
     it("Announces O has won when appropriate", () => {
-      makeMove(0);  // X moves
-      makeMove(6);  // O moves
-      makeMove(1);  // X moves
-      makeMove(7);  // O moves
-      makeMove(5);  // X moves
-      makeMove(8);  // O moves, completing bottom row
+      makeMove(0); // X moves
+      makeMove(6); // O moves
+      makeMove(1); // X moves
+      makeMove(7); // O moves
+      makeMove(5); // X moves
+      makeMove(8); // O moves, completing bottom row
       cy.get(".statusBarContainer").contains("Player O has won!");
     });
 
@@ -71,7 +71,7 @@ describe("Tic Tac Toe game", () => {
       // X moves
       makeMove(0);
 
-      cy.get(`#cell0`).should('have.attr', 'aria-label', 'X')
+      cy.get(`#cell0`).should("have.attr", "aria-label", "X");
     });
 
     it("Marks a cell as O when Player O clicks", () => {
@@ -81,28 +81,28 @@ describe("Tic Tac Toe game", () => {
       // O moves
       makeMove(1);
 
-      cy.get("#cell1").should('have.attr', 'aria-label', 'O');
+      cy.get("#cell1").should("have.attr", "aria-label", "O");
     });
   });
 
   describe("Notifications", () => {
     it("Shows a message for X's victory when X clicks a winning cell", () => {
-      makeMove(0);  // X moves
-      makeMove(6);  // O moves
-      makeMove(1);  // X moves
-      makeMove(7);  // O moves
-      makeMove(2);  // X moves, completing top row
+      makeMove(0); // X moves
+      makeMove(6); // O moves
+      makeMove(1); // X moves
+      makeMove(7); // O moves
+      makeMove(2); // X moves, completing top row
 
       cy.get("div[role=alert]").contains(/PlayerX has won/);
     });
 
     it("Shows a message for O's victory when O clicks a winning cell", () => {
-      makeMove(0);  // X moves
-      makeMove(6);  // O moves
-      makeMove(1);  // X moves
-      makeMove(7);  // O moves
-      makeMove(4);  // X moves
-      makeMove(8);  // O moves, completing bottom row
+      makeMove(0); // X moves
+      makeMove(6); // O moves
+      makeMove(1); // X moves
+      makeMove(7); // O moves
+      makeMove(4); // X moves
+      makeMove(8); // O moves, completing bottom row
 
       cy.get("div[role=alert]").contains(/PlayerO has won/);
     });
@@ -130,13 +130,13 @@ describe("Tic Tac Toe game", () => {
     });
 
     it("Shows a message for when a player clicks on a cell in a completed game", () => {
-      makeMove(0);  // X moves
-      makeMove(6);  // O moves
-      makeMove(1);  // X moves
-      makeMove(7);  // O moves
-      makeMove(2);  // X moves, completing top row
+      makeMove(0); // X moves
+      makeMove(6); // O moves
+      makeMove(1); // X moves
+      makeMove(7); // O moves
+      makeMove(2); // X moves, completing top row
 
-      makeMove(4);  // move that should trigger notification
+      makeMove(4); // move that should trigger notification
 
       cy.get("div[role=alert]").contains(/Game is already over/);
     });
