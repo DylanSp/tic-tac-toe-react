@@ -21,10 +21,6 @@ export class Cell extends React.PureComponent<CellProps> {
     this.drawCellState();
   };
 
-  public componentWillUpdate = () => {
-    this.drawCellState();
-  };
-
   public render() {
     return (
       <canvas
