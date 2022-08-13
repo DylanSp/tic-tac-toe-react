@@ -40,7 +40,7 @@ describe("Tic Tac Toe game", () => {
       makeMove(1);  // X moves
       makeMove(7);  // O moves
       makeMove(5);  // X moves
-      makeMove(8);  // O moves, completing top row
+      makeMove(8);  // O moves, completing bottom row
       cy.get(".statusBarContainer").contains("Player O has won!");
     });
 
@@ -63,6 +63,25 @@ describe("Tic Tac Toe game", () => {
       makeMove(0);
       cy.get("#newGameButton").click();
       cy.get(".statusBarContainer").contains("Player X to move");
+    });
+  });
+
+  describe("Gameboard cells", () => {
+    it("Marks a cell as X when Player X clicks", () => {
+      // X moves
+      makeMove(0);
+
+      cy.get(`#cell0`).should('have.attr', 'aria-label', 'X')
+    });
+
+    it("Marks a cell as O when Player O clicks", () => {
+      // X moves
+      makeMove(0);
+
+      // O moves
+      makeMove(1);
+
+      cy.get("#cell1").should('have.attr', 'aria-label', 'O');
     });
   });
 });

@@ -16,84 +16,6 @@ it("renders without crashing", () => {
     shallow(<App />);
 });
 
-describe("Status bar", () => {
-    let app: ReactWrapper<AppProps, AppState>;
-
-    beforeEach(() => {
-        app = mount(<App />);
-    });
-
-    afterEach(() => {
-        app = app.unmount();
-    });
-
-    it("Prompts X to move at game start", () => {
-        expect(app.find(StatusBar).text()).toMatch(/Player X to move/);
-    });
-
-    it("Prompts O to move after one move", () => {
-        makeGameMove(app, 0);
-        expect(app.find(StatusBar).text()).toMatch(/Player O to move/);
-    });
-
-    it("Prompts X to move after two moves", () => {
-        makeGameMove(app, 0);
-        makeGameMove(app, 1);
-        expect(app.find(StatusBar).text()).toMatch(/Player X to move/);
-    });
-
-    it("Announces X has won when appropriate", () => {
-        makeGameMove(app, 0); // X moves
-        makeGameMove(app, 6); // O moves
-        makeGameMove(app, 1); // X moves
-        makeGameMove(app, 7); // O moves
-        makeGameMove(app, 2); // X moves, completing top row
-        expect(app.find(StatusBar).text()).toMatch(/Player X has won!/);
-    });
-
-    it("Announces O has won when appropriate", () => {
-        makeGameMove(app, 0); // X moves
-        makeGameMove(app, 6); // O moves
-        makeGameMove(app, 1); // X moves
-        makeGameMove(app, 7); // O moves
-        makeGameMove(app, 5); // X moves
-        makeGameMove(app, 8); // O moves, completing bottom row
-        expect(app.find(StatusBar).text()).toMatch(/Player O has won!/);
-    });
-
-    it("Announces drawn game when appropriate", () => {
-        makeGameMove(app, 0); // X moves
-        makeGameMove(app, 1); // O moves
-        makeGameMove(app, 3); // X moves
-        makeGameMove(app, 4); // O moves
-        makeGameMove(app, 7); // X moves
-        makeGameMove(app, 6); // O moves
-        makeGameMove(app, 2); // X moves
-        makeGameMove(app, 5); // O moves
-        makeGameMove(app, 8); // X moves, filling board
-        expect(app.find(StatusBar).text()).toMatch(/Game is drawn!/);
-    });
-});
-
-describe("New game button", () => {
-    let app: ReactWrapper<AppProps, AppState>;
-
-    beforeEach(() => {
-        app = mount(<App />);
-    });
-
-    afterEach(() => {
-        app = app.unmount();
-    });
-
-    it("Resets the game after one move", () => {
-        makeGameMove(app, 0);
-        app.find("#newGameButton").simulate("click");
-        expect(app.state().game.currentPlayer).toBe("PlayerX");
-        expect(app.state().game.board[0]).toBe("EMPTY");
-    });
-});
-
 describe("Gameboard cells", () => {
     let app: ReactWrapper<AppProps, AppState>;
 
@@ -103,30 +25,6 @@ describe("Gameboard cells", () => {
 
     afterEach(() => {
         app = app.unmount();
-    });
-
-    it("Marks a cell as X when Player X clicks", () => {
-        let cell0 = app.find("[cellNum=0]");
-        expect(cell0.prop("cellState")).toBe("EMPTY");
-        cell0.simulate("click");
-        // reset cell0 to reference new component after update, not component from old tree
-        cell0 = app.find("[cellNum=0]");
-        expect(cell0.prop("cellState")).toBe("X");
-    });
-
-    it("Marks a cell as O when Player O clicks", () => {
-        // X moves
-        const cell0 = app.find("[cellNum=0]");
-        cell0.simulate("click");
-
-        // O moves
-        let cell1 = app.find("[cellNum=1]");
-        expect(cell1.prop("cellState")).toBe("EMPTY");
-        cell1.simulate("click");
-
-        // reset cell1 to reference new component after update, not component from old tree
-        cell1 = app.find("[cellNum=1]");
-        expect(cell1.prop("cellState")).toBe("O");
     });
 
     it("Shows a message for X's victory when X clicks a winning cell", () => {

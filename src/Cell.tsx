@@ -34,6 +34,9 @@ export class Cell extends React.PureComponent<CellProps> {
                 className="cell"
                 id={`cell${this.props.cellNum}`}
                 onClick={() => this.props.handleMove(this.props.cellNum)}
+                // accessibility
+                role="img"
+                aria-label={this.props.cellState}
             />
         );
     }
